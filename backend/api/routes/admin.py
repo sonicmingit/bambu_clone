@@ -1,4 +1,7 @@
-from flask import Blueprint, abort, current_app, jsonify, request
+try:  # Prefer the real Flask package when available.
+    from flask import Blueprint, abort, current_app, jsonify, request
+except ModuleNotFoundError:  # pragma: no cover - fallback for local stub usage
+    from flask_stub import Blueprint, abort, current_app, jsonify, request
 
 from ...services import SyncManager
 

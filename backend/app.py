@@ -1,4 +1,7 @@
-from flask import Flask
+try:  # Prefer the real Flask package when available.
+    from flask import Flask
+except ModuleNotFoundError:  # pragma: no cover - fallback for local stub usage
+    from flask_stub import Flask
 
 from .api.routes import admin, models
 from .services import InMemoryDatabase, InMemoryStorage, SyncManager
