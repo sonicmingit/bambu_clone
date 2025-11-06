@@ -7,6 +7,9 @@ export default defineConfig({
   plugins: [vue()],
   server: {
     port: 5173,
+    // Allow requests from the specified host (fixes: Blocked request "srv.vm")
+    allowedHosts: ['srv.vm'],
+    host: true,
     proxy: {
       '/api': {
         target: backendTarget,
