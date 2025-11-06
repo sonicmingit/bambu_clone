@@ -1,0 +1,46 @@
+:root {
+  color-scheme: dark;
+  --bg-primary: #0d111f;
+  --bg-secondary: #151a2c;
+  --card-gradient: linear-gradient(160deg, rgba(12, 16, 32, 0.9) 0%, rgba(27, 34, 58, 0.8) 100%);
+  --accent: #00d4ff;
+  --accent-soft: rgba(0, 212, 255, 0.12);
+  --text-primary: #f5f7fb;
+  --text-secondary: rgba(245, 247, 251, 0.7);
+  --border-soft: rgba(255, 255, 255, 0.08);
+  --shadow-lg: 0 18px 45px rgba(7, 12, 33, 0.55);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  background: var(--bg-primary);
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  font-family: inherit;
+}
+
+input,
+select {
+  font-family: inherit;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
