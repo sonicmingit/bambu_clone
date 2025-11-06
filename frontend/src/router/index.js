@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
+const Showcase = () => import('../pages/Showcase.vue');
 const ModelList = () => import('../pages/ModelList.vue');
 const ModelDetail = () => import('../pages/ModelDetail.vue');
 const ModelManage = () => import('../pages/ModelManage.vue');
@@ -9,7 +10,8 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      redirect: '/models'
+      name: 'Showcase',
+      component: Showcase
     },
     {
       path: '/models',

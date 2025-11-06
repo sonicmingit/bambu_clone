@@ -9,7 +9,7 @@ from flask import Blueprint, abort, current_app, jsonify, send_file
 
 from ...services import InMemoryDatabase, InMemoryStorage
 
-router = Blueprint("models", __name__, url_prefix="/models")
+router = Blueprint("models", __name__, url_prefix="/api/models")
 
 
 def _get_database() -> InMemoryDatabase:

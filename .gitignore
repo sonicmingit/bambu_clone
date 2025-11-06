@@ -5,4 +5,5 @@ __pycache__/
 bambu.db
 *.sqlite3
 node_modules/
+frontend/dist/
 .DS_Store
