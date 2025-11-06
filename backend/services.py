@@ -11,11 +11,36 @@ class InMemoryDatabase:
                 "id": "mdl-1",
                 "name": "Alpha",
                 "description": "Primary production model.",
+                "category": "production",
+                "owner": "core-team",
             },
             "mdl-2": {
                 "id": "mdl-2",
                 "name": "Beta",
                 "description": "Experimental beta model.",
+                "category": "experiment",
+                "owner": "labs",
+            },
+            "mdl-3": {
+                "id": "mdl-3",
+                "name": "Gamma",
+                "description": "Regional recommendation model tuned for APAC.",
+                "category": "regional",
+                "owner": "growth",
+            },
+            "mdl-4": {
+                "id": "mdl-4",
+                "name": "Delta",
+                "description": "Legacy fallback model kept for compatibility.",
+                "category": "legacy",
+                "owner": "platform",
+            },
+            "mdl-5": {
+                "id": "mdl-5",
+                "name": "Epsilon",
+                "description": "Offline batch scoring pipeline.",
+                "category": "batch",
+                "owner": "data-engineering",
             },
         }
 
@@ -41,6 +66,21 @@ class InMemoryStorage:
             "mdl-2": (
                 "beta.txt",
                 b"Beta model attachment contents",
+                "text/plain",
+            ),
+            "mdl-3": (
+                "gamma.csv",
+                b"id,score\nuser-1,0.87\nuser-2,0.91\n",
+                "text/csv",
+            ),
+            "mdl-4": (
+                "delta.json",
+                b"{\"status\": \"deprecated\", \"sunset_at\": \"2025-03-01\"}",
+                "application/json",
+            ),
+            "mdl-5": (
+                "epsilon.log",
+                b"2024-04-01T00:00:00Z pipeline completed successfully",
                 "text/plain",
             ),
         }

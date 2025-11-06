@@ -21,7 +21,7 @@ def test_list_models_returns_all_entries():
     assert response.status_code == 200
     data = response.get_json()
     assert isinstance(data, list)
-    assert {model["id"] for model in data} == {"mdl-1", "mdl-2"}
+    assert {model["id"] for model in data} == {"mdl-1", "mdl-2", "mdl-3", "mdl-4", "mdl-5"}
 
 
 def test_get_model_returns_single_entry():
@@ -32,6 +32,8 @@ def test_get_model_returns_single_entry():
     assert response.status_code == 200
     data = response.get_json()
     assert data["name"] == "Alpha"
+    assert data["category"] == "production"
+    assert data["owner"] == "core-team"
 
 
 def test_get_model_unknown_returns_404():
