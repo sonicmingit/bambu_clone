@@ -1,20 +1,14 @@
-"""FastAPI application entrypoint."""
+"""Application entrypoint for running the Flask app with a WSGI server."""
+
 from __future__ import annotations
 
-from fastapi import FastAPI
+from .app import create_app
 
-from .api.routes import models as model_routes
-from .database import engine
-from .models import Base
-
-Base.metadata.create_all(bind=engine)
-
-app = FastAPI(title="Bambu Clone API")
-app.include_router(model_routes.router)
+app = create_app()
 
 
-@app.get("/health")
+@app.route("/health")
 def healthcheck() -> dict[str, str]:
-    """Simple healthcheck endpoint."""
+    """Simple healthcheck endpoint used by infrastructure checks."""
 
     return {"status": "ok"}
