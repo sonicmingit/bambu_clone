@@ -16,7 +16,7 @@ def create_client():
 def test_list_models_returns_all_entries():
     client = create_client()
 
-    response = client.get("/models")
+    response = client.get("/api/models")
 
     assert response.status_code == 200
     data = response.get_json()
@@ -27,7 +27,7 @@ def test_list_models_returns_all_entries():
 def test_get_model_returns_single_entry():
     client = create_client()
 
-    response = client.get("/models/mdl-1")
+    response = client.get("/api/models/mdl-1")
 
     assert response.status_code == 200
     data = response.get_json()
@@ -39,7 +39,7 @@ def test_get_model_returns_single_entry():
 def test_get_model_unknown_returns_404():
     client = create_client()
 
-    response = client.get("/models/unknown")
+    response = client.get("/api/models/unknown")
 
     assert response.status_code == 404
 
@@ -47,7 +47,7 @@ def test_get_model_unknown_returns_404():
 def test_download_attachment_returns_file_payload():
     client = create_client()
 
-    response = client.get("/models/mdl-1/attachment")
+    response = client.get("/api/models/mdl-1/attachment")
 
     assert response.status_code == 200
     assert response.mimetype == "text/plain"
@@ -59,6 +59,6 @@ def test_download_attachment_returns_file_payload():
 def test_download_attachment_for_unknown_model_returns_404():
     client = create_client()
 
-    response = client.get("/models/unknown/attachment")
+    response = client.get("/api/models/unknown/attachment")
 
     assert response.status_code == 404

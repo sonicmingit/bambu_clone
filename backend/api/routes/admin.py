@@ -2,7 +2,7 @@ from flask import Blueprint, abort, current_app, jsonify, request
 
 from ...services import SyncManager
 
-router = Blueprint("admin", __name__, url_prefix="/admin")
+router = Blueprint("admin", __name__, url_prefix="/api/admin")
 
 
 def get_sync_manager() -> SyncManager:

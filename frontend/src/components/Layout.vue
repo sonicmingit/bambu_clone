@@ -3,6 +3,12 @@
     <header class="app-header">
       <div class="logo">MakerWorld</div>
       <nav class="nav-links">
+        <RouterLink
+          :to="{ name: 'Showcase' }"
+          class="nav-link"
+          active-class=""
+          exact-active-class="is-active"
+        >展示页</RouterLink>
         <RouterLink to="/models" class="nav-link" active-class="is-active">模型库</RouterLink>
         <RouterLink to="/manage" class="nav-link" active-class="is-active">模型管理</RouterLink>
       </nav>

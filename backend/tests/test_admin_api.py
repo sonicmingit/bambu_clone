@@ -18,7 +18,7 @@ def create_client():
 def test_sync_requires_token():
     client = create_client()
 
-    response = client.post("/admin/sync")
+    response = client.post("/api/admin/sync")
 
     assert response.status_code == 401
 
@@ -27,7 +27,7 @@ def test_sync_trigger_and_status_flow():
     client = create_client()
 
     trigger_response = client.post(
-        "/admin/sync", headers={"X-Admin-Token": ADMIN_TOKEN}
+        "/api/admin/sync", headers={"X-Admin-Token": ADMIN_TOKEN}
     )
     assert trigger_response.status_code == 202
     trigger_payload = trigger_response.get_json()
@@ -35,7 +35,7 @@ def test_sync_trigger_and_status_flow():
     assert trigger_payload["runs"] == 1
 
     status_response = client.get(
-        "/admin/sync", headers={"X-Admin-Token": ADMIN_TOKEN}
+        "/api/admin/sync", headers={"X-Admin-Token": ADMIN_TOKEN}
     )
     assert status_response.status_code == 200
     status_payload = status_response.get_json()
@@ -46,6 +46,8 @@ def test_sync_trigger_and_status_flow():
 def test_sync_status_requires_valid_token():
     client = create_client()
 
-    response = client.get("/admin/sync", headers={"X-Admin-Token": "invalid"})
+    response = client.get(
+        "/api/admin/sync", headers={"X-Admin-Token": "invalid"}
+    )
 
     assert response.status_code == 401
