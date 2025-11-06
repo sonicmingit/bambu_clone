@@ -5,7 +5,10 @@ from __future__ import annotations
 from io import BytesIO
 from typing import Any, Dict, List
 
-from flask import Blueprint, abort, current_app, jsonify, send_file
+try:  # Prefer the real Flask package when available.
+    from flask import Blueprint, abort, current_app, jsonify, send_file
+except ModuleNotFoundError:  # pragma: no cover - fallback for local stub usage
+    from flask_stub import Blueprint, abort, current_app, jsonify, send_file
 
 from ...services import InMemoryDatabase, InMemoryStorage
 
