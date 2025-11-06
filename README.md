@@ -46,6 +46,8 @@ pip install -r requirements.txt
 
 ## 启动与部署
 
+### 本地开发
+
 1. 确保完成依赖安装，并使用官方 Flask 包。
 2. 设置环境变量并启动开发服务器：
    ```bash
@@ -58,6 +60,22 @@ pip install -r requirements.txt
    - `GET /admin/sync`（携带正确的 `X-Admin-Token`）查看同步状态。
 
 在部署到生产环境时，可选择任意 WSGI 服务器（如 Gunicorn、uWSGI），加载 `backend.main:app` 即可。
+
+### Docker 部署
+
+仓库内提供了可直接构建的 `Dockerfile` 与 `docker-compose.yml`，便于在容器环境中运行后端服务。
+
+构建并启动服务：
+
+```bash
+docker compose up --build
+```
+
+容器启动后，服务会监听在 `http://localhost:8000`。默认使用 Gunicorn 作为 WSGI 服务器，可在 Compose 配置中自定义端口或环境变量。
+
+### 演示数据
+
+内存数据库默认预置了 5 条模型记录以及相应的附件文件，覆盖常见的生产、实验、地区化、遗留和离线批处理等场景，可直接用于接口联调与功能演示。
 
 ## 测试
 
