@@ -137,6 +137,23 @@ class Flask:
         self.config: Dict[str, Any] = {}
         self._routes: List[Route] = []
 
+    def route(self, rule: str, methods: Optional[Iterable[str]] = None) -> Callable:
+        methods_list = [method.upper() for method in (methods or ["GET"])]
+        path = self._normalize_rule(rule)
+        pattern = Blueprint._compile_pattern(path)
+
+        def decorator(func: Callable) -> Callable:
+            self._routes.append(Route(methods_list, path, func, pattern))
+            return func
+
+        return decorator
+
+    def get(self, rule: str) -> Callable:
+        return self.route(rule, methods=["GET"])
+
+    def post(self, rule: str) -> Callable:
+        return self.route(rule, methods=["POST"])
+
     def register_blueprint(self, blueprint: Blueprint) -> None:
         self._routes.extend(blueprint.iter_routes())
 
@@ -169,6 +186,13 @@ class Flask:
             if match:
                 return route, match.groupdict()
         raise HTTPException(404, "Not Found")
+
+    @staticmethod
+    def _normalize_rule(rule: str) -> str:
+        rule = rule or ""
+        if not rule.startswith("/"):
+            rule = f"/{rule}"
+        return rule
 
     def _coerce_to_response(self, result: Any) -> Response:
         if isinstance(result, Response):
